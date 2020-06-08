@@ -127,7 +127,6 @@ async def evenement_error(ctx, error):
         
 token = 't2NzE4MjczNDU4MTI2OTc5MDgy.Xt5xsw.B4M7uKFMu3j49p3ynqAFw08G3Rg'
 token_print = ''.join(token[2:])
-print (token_print)
 
 
 bot.run(token_print)
