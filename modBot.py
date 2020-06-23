@@ -36,7 +36,7 @@ async def change_status():
 
 #CLEAR + ROLE NEEDED
 @bot.command()
-@commands.has_any_role('bot','Dad')
+@commands.has_any_role('bot','Dad','Admin')
 async def clear(ctx, amount = 5):
     await ctx.channel.purge(limit=amount)
 
@@ -44,20 +44,20 @@ async def clear(ctx, amount = 5):
 @clear.error
 async def clear_error(ctx, error):
     if isinstance(error, commands.MissingAnyRole):
-        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role.')
+        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role or \"**`Admin`**\" role.')
 
         
 
 #CLS + ROLE NEEDED
 @bot.command()
-@commands.has_any_role('Dad','bot')
+@commands.has_any_role('Dad','bot','Admin')
 async def cls(ctx, amount = 999999999999999999999999999999999999999999999999999999999999):
     await ctx.channel.purge(limit=amount)
 
 @cls.error
 async def cls_error(ctx, error):
     if isinstance(error, commands.MissingAnyRole):
-        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role.')    
+        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role or \"**`Admin`**\" role.')    
 
 
 
@@ -66,7 +66,7 @@ async def cls_error(ctx, error):
 
 #REMOVE
 @bot.command()
-@commands.has_any_role('bot','Dad')
+@commands.has_any_role('bot','Dad','Admin')
 async def kick(ctx, member : discord.Member, *, reason = None ):
     await member.kick(reason=reason)
     await ctx.send(f'{member.mention} was kicked from the server')
@@ -74,12 +74,12 @@ async def kick(ctx, member : discord.Member, *, reason = None ):
 @kick.error
 async def kick_error(ctx, error):
     if isinstance(error, commands.MissingAnyRole):
-        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role.')
+        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role or \"**`Admin`**\" role.')
 
 
 #ban
 @bot.command()
-@commands.has_any_role('bot','Dad')
+@commands.has_any_role('bot','Dad','Admin')
 async def ban(ctx, member : discord.Member, *, reason = None ):
     await member.ban(reason=reason)
     await ctx.send(f'{member.name}#{member.discriminator} was banned from the server')
@@ -87,13 +87,13 @@ async def ban(ctx, member : discord.Member, *, reason = None ):
 @ban.error
 async def ban_error(ctx, error):
     if isinstance(error, commands.MissingAnyRole):
-        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role.')
+        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role or \"**`Admin`**\" role.')
 
 
 
 #unban
 @bot.command(aliases=['uba'])
-@commands.has_any_role('bot','Dad')
+@commands.has_any_role('bot','Dad','Admin')
 async def unban(ctx, *, member):
     banned_users_list = await ctx.guild.bans()
     member_name, member_discriminator = member.split("#")
@@ -109,19 +109,19 @@ async def unban(ctx, *, member):
 @unban.error
 async def unban_error(ctx, error):
     if isinstance(error, commands.MissingAnyRole):
-        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role.')
+        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role or \"**`Admin`**\" role.')
 
 
 #Annonce
 @bot.command(aliases=['e', 'event'])
-@commands.has_any_role('bot','Dad')
+@commands.has_any_role('bot','Dad','Admin')
 async def evenement(ctx, a, b):
     await ctx.send('```diff\n-Announcement:\n```\n```ini\n[Event: {}]\n```\n```json\n\"Date: {}\"\n```'.format(a.capitalize(),b.capitalize()))
 
 @evenement.error
 async def evenement_error(ctx, error):
     if isinstance(error, commands.MissingAnyRole):
-        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role.')
+        await ctx.send('You need \"**`Dad`**\" or \"**`bot`**\" role or \"**`Admin`**\" role.')
         
         
         
